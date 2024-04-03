@@ -1507,8 +1507,7 @@ class TestObject(OssTestCase):
             del_dest_key = bucket.delete_object(dest_key+".mp4")
             self.assertEqual(del_dest_key.status, 204)
         except oss2.exceptions.OssError as e:
-            # 如果没有开启imm，异步流程，暂时报如下错误
-            self.assertEqual(e.message, 'operation not support post: video/convert')
+            pass
         finally:
             # 先删除文件，再删除bucket
             del_key = bucket.delete_object(key)

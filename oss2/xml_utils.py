@@ -11,6 +11,7 @@ XML处理相关。
     - to_开头的函数：用来生成发往服务器端的XML
 
 """
+import json
 import logging
 import xml.etree.ElementTree as ElementTree
 
@@ -2001,7 +2002,7 @@ def parse_list_bucket_style(result, body):
 def parse_async_process_object(result, body):
 
     if body:
-        body_dict = eval(body.decode('utf-8'))
+        body_dict = json.loads(to_unicode(body))
         result.event_id = body_dict['EventId']
         result.async_request_id = body_dict['RequestId']
         result.task_id = body_dict['TaskId']
